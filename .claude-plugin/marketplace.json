@@ -1,0 +1,15 @@
+{
+  "name": "flutter-skill",
+  "description": "A comprehensive Flutter & Dart development skill for Claude Code.",
+  "owner": {
+    "name": "Arturo Barrantes Vasquez"
+  },
+  "plugins": [
+    {
+      "name": "flutter",
+      "source": "./",
+      "description": "Comprehensive Flutter/Dart reference: widgets & layout, BLoC/Cubit, navigation (flow_builder/go_router), forms (formz), Material 3, REST/http, WebSockets, Firebase auth + FCM, maps (flutter_map), in-app purchase, animations, testing, performance, and build/deploy.",
+      "version": "1.0.0"
+    }
+  ]
+}

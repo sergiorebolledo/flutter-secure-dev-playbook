@@ -1,0 +1,30 @@
+{
+  "name": "flutter",
+  "description": "Comprehensive, version-accurate Flutter & Dart development reference for Claude Code — widgets & layout, state management (BLoC/Cubit), navigation, forms (formz), Material 3 theming, REST/http, WebSockets, Firebase auth + FCM, maps & location, in-app purchases, animations, testing, performance, and build/deploy. A SKILL.md router plus 19 on-demand reference files.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Arturo Barrantes Vasquez",
+    "url": "https://github.com/Arcturus91"
+  },
+  "homepage": "https://github.com/Arcturus91/claude-flutter-skill",
+  "repository": "https://github.com/Arcturus91/claude-flutter-skill",
+  "license": "MIT",
+  "keywords": [
+    "flutter",
+    "dart",
+    "bloc",
+    "cubit",
+    "flutter-bloc",
+    "formz",
+    "flow-builder",
+    "firebase",
+    "fcm",
+    "material3",
+    "flutter-map",
+    "in-app-purchase",
+    "web-socket-channel",
+    "mobile",
+    "claude-code",
+    "skill"
+  ]
+}
