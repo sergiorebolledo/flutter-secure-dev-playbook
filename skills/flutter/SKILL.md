@@ -1,13 +1,13 @@
 ---
 name: Flutter Secure Dev Playbook
-description: Use when developing, debugging, reviewing, or securing Flutter / Dart mobile apps — widgets & layout, state management (BLoC/Cubit), navigation (flow_builder/go_router), forms (formz), Material 3 theming, REST/http, WebSockets, Firebase auth + FCM push, maps (flutter_map) & location, in-app purchases, animations, testing, performance, or build/deploy. Also use for application security and Secure SDLC work — architecture principles (SOLID/Clean Architecture), OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE mapping, DevSecOps/CI pipelines, AAA/CIA access control, production security ops, and resilience planning. Especially apps using BLoC/Cubit, formz, flow_builder, Firebase, and flutter_map.
+description: Use when developing, debugging, reviewing, designing, securing, or launching Flutter / Dart mobile or web apps — widgets & layout, state management (BLoC/Cubit), navigation (flow_builder/go_router), forms (formz), Material 3 theming, REST/http, WebSockets, Firebase auth + FCM push, maps (flutter_map) & location, in-app purchases, animations, testing, performance, or build/deploy. Also use for application security and Secure SDLC work (OWASP MASVS/ASVS, STRIDE/PASTA, CWE, DevSecOps/CI, AAA/CIA), UX/UI design and accessibility (WCAG 2.2), monetization (AdMob ads, subscriptions/memberships), ASO/marketing/launch, and the full software development lifecycle end to end. Especially apps using BLoC/Cubit, formz, flow_builder, Firebase, and flutter_map.
 ---
 
-# Flutter Development & Application Security
+# Flutter Development, Design, Security & Business
 
 ## Overview
 
-Comprehensive, version-accurate reference for building **and securing** Flutter apps with **Dart 3** and **Material 3**, weighted toward a **production mobile** stack (Cubit/BLoC, formz, flow_builder, a static `ApiService`, `web_socket_channel`, Firebase auth + FCM, `flutter_map`, `in_app_purchase`), plus a full Secure Software Development Life Cycle (SSDLC) layer covering OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE weakness mapping, DevSecOps automation, AAA/CIA access control, and production resilience.
+Comprehensive, version-accurate reference for building, designing, securing, and launching Flutter apps with **Dart 3** and **Material 3**, weighted toward a **production mobile** stack (Cubit/BLoC, formz, flow_builder, a static `ApiService`, `web_socket_channel`, Firebase auth + FCM, `flutter_map`, `in_app_purchase`). Covers the full lifecycle, not just code: a Secure SDLC/DevSecOps layer (OWASP MASVS/ASVS, STRIDE/PASTA, CWE, AAA/CIA, production resilience), a UX/design and accessibility layer (WCAG 2.2), and a business layer (AdMob ads, subscriptions/memberships, ASO and launch marketing).
 
 This is a **reference skill**: this file routes you to the right topic. **Load only the `references/*.md` file(s) for your current task** — do not read them all. Each reference file ends with a `## Real-world usage` section showing the real pattern this codebase uses.
 
@@ -57,6 +57,12 @@ This is a **reference skill**: this file routes you to the right topic. **Load o
 | Testing methodology | [references/testing-methodologies-tdd-bdd-qa.md](references/testing-methodologies-tdd-bdd-qa.md) | TDD red/green/refactor, BDD/Gherkin, QA process, coverage KPIs |
 | License compliance | [references/license-compliance.md](references/license-compliance.md) | permissive vs. copyleft dependency licenses, audit process before a public release |
 | Code review checklist | [references/code-review-checklist.md](references/code-review-checklist.md) | Clean Architecture review, security severity triage, evidence-before-claims verification |
+| UX/UI design principles | [references/ux-design-principles.md](references/ux-design-principles.md) | Nielsen heuristics, information architecture, design tokens (spacing/type scale), screen states, onboarding |
+| Accessibility (WCAG 2.2) | [references/accessibility-wcag.md](references/accessibility-wcag.md) | semantics, touch targets, contrast, text scaling, motion, accessible auth — real WCAG criterion IDs |
+| Monetization: ads | [references/monetization-admob-ads.md](references/monetization-admob-ads.md) | AdMob formats, UMP/GDPR consent, Play Store ad policy, placement UX |
+| Monetization: subscriptions | [references/monetization-subscriptions-memberships.md](references/monetization-subscriptions-memberships.md) | freemium models, in_app_purchase vs. RevenueCat, paywall UX, store subscription policy |
+| ASO, marketing & launch | [references/aso-marketing-launch.md](references/aso-marketing-launch.md) | store listing optimization, launch checklist, early-user acquisition, minimal analytics |
+| Full SDLC lifecycle | [references/sdlc-full-lifecycle.md](references/sdlc-full-lifecycle.md) | capstone: the 7 SDLC phases mapped to every other file, app vs. web differences |
 
 ## "I want to…" → file
 
@@ -82,6 +88,12 @@ This is a **reference skill**: this file routes you to the right topic. **Load o
 | Plan backups / offline mode | resilience-bcp-drp.md |
 | Add a package to pubspec.yaml | license-compliance.md (+ secure-sdlc-devsecops.md for SCA) |
 | Self-review a PR before merging | code-review-checklist.md |
+| Design a new screen before coding it | ux-design-principles.md |
+| Make a widget usable with a screen reader | accessibility-wcag.md |
+| Add banner/interstitial/rewarded ads | monetization-admob-ads.md |
+| Build a paywall / premium tier | monetization-subscriptions-memberships.md |
+| Prepare a Play Store listing / launch | aso-marketing-launch.md |
+| Figure out "what phase am I in" | sdlc-full-lifecycle.md |
 
 ## Reference conventions (a proven production setup)
 

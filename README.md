@@ -1,6 +1,6 @@
 # 🚀 Flutter Secure Dev Playbook
 
-Guía de referencia exhaustiva y práctica para el desarrollo de aplicaciones móviles con **Flutter** y **Dart**, empaquetada como **skill/plugin instalable para [Claude Code](https://claude.com/claude-code)**. Compila estándares de arquitectura, patrones de Flutter y marcos de ciberseguridad — desde el diseño hasta producción — en un solo repositorio.
+Guía de referencia exhaustiva y práctica para el desarrollo de aplicaciones móviles (y web) con **Flutter** y **Dart**, empaquetada como **skill/plugin instalable para [Claude Code](https://claude.com/claude-code)**. Compila estándares de arquitectura, patrones de Flutter, diseño UX/accesibilidad, marcos de ciberseguridad, y monetización/marketing — desde la idea hasta la app publicada — en un solo repositorio.
 
 Este proyecto es un **fork extendido** de [Arcturus91/claude-flutter-skill](https://github.com/Arcturus91/claude-flutter-skill) (base de 19 archivos de referencia sobre Flutter/Dart), al que se agregó una capa completa de **Secure SDLC / DevSecOps / arquitectura**, con contenido original nuevo — informado además por conceptos revisados en [VeryGoodOpenSource/vgv-ai-flutter-plugin](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin) (seguridad estática específica de paquetes, cumplimiento de licencias, gates de calidad) y [vp-k/flutter-craft](https://github.com/vp-k/flutter-craft) (checklist de revisión de arquitectura, principio de verificación antes de afirmar completado). El texto es original — no se copió contenido literal de ninguno de los tres, solo los temas/conceptos que cubren. Se mantiene la licencia MIT original y el aviso de copyright del autor base.
 
@@ -29,16 +29,22 @@ cp -R flutter-secure-dev-playbook/skills/flutter ~/.claude/skills/flutter
 
 ---
 
+Este no es un repositorio solo de seguridad: cubre el ciclo completo — **diseño UX, desarrollo, arquitectura, seguridad, testing, monetización y marketing** — desde la idea hasta la app publicada.
+
 ## 📌 Índice de Contenidos
 
 1. [Desarrollo Flutter/Dart (base)](#1-desarrollo-flutterdart-base)
 2. [Principios de Diseño y Código Limpio (Clean Code)](#2-principios-de-diseño-y-código-limpio-clean-code)
 3. [Gestión de Estado y Patrones en Flutter](#3-gestión-de-estado-y-patrones-en-flutter)
-4. [Ciberseguridad en el Ciclo de Desarrollo (Shift Left)](#4-ciberseguridad-en-el-ciclo-de-desarrollo-shift-left)
-5. [Seguridad y Operaciones en Producción](#5-seguridad-y-operaciones-en-producción)
-6. [Ciclo de Vida, DevOps y Automatización](#6-ciclo-de-vida-devops-y-automatización)
-7. [Calidad de Software y Metodologías de Pruebas](#7-calidad-de-software-y-metodologías-de-pruebas)
-8. [Resiliencia Operativa y Continuidad](#8-resiliencia-operativa-y-continuidad)
+4. [Diseño UX/UI y Accesibilidad](#4-diseño-uxui-y-accesibilidad)
+5. [Ciberseguridad en el Ciclo de Desarrollo (Shift Left)](#5-ciberseguridad-en-el-ciclo-de-desarrollo-shift-left)
+6. [Seguridad y Operaciones en Producción](#6-seguridad-y-operaciones-en-producción)
+7. [Ciclo de Vida, DevOps y Automatización](#7-ciclo-de-vida-devops-y-automatización)
+8. [Calidad de Software y Metodologías de Pruebas](#8-calidad-de-software-y-metodologías-de-pruebas)
+9. [Resiliencia Operativa y Continuidad](#9-resiliencia-operativa-y-continuidad)
+10. [Monetización: Publicidad y Suscripciones](#10-monetización-publicidad-y-suscripciones)
+11. [ASO, Marketing de Lanzamiento y Analítica](#11-aso-marketing-de-lanzamiento-y-analítica)
+12. [El Ciclo de Vida Completo (SDLC), App y Web](#12-el-ciclo-de-vida-completo-sdlc-app-y-web)
 
 ---
 
@@ -85,7 +91,14 @@ Heredado de la skill original, es un **reference skill**: `SKILL.md` enruta a Cl
 * **MVVM**: mapeo de conceptos a BLoC/Cubit — ver la sección correspondiente en `architecture-principles-solid-clean.md`.
 * **DI (Dependency Injection)**: constructor injection manual vs. `get_it`/`injectable` según escala del proyecto.
 
-## 4. Ciberseguridad en el Ciclo de Desarrollo (Shift Left)
+## 4. Diseño UX/UI y Accesibilidad
+
+| Archivo | Contenido |
+|---|---|
+| [`skills/flutter/references/ux-design-principles.md`](skills/flutter/references/ux-design-principles.md) | Heurísticas de Nielsen, arquitectura de la información, design tokens (espaciado/tipografía), estados de pantalla (loading/empty/error), onboarding |
+| [`skills/flutter/references/accessibility-wcag.md`](skills/flutter/references/accessibility-wcag.md) | WCAG 2.2 aplicado a Flutter con IDs de criterio reales — semántica, tamaño de objetivos táctiles, contraste, escalado de texto, autenticación accesible |
+
+## 5. Ciberseguridad en el Ciclo de Desarrollo (Shift Left)
 
 | Marco | Archivo |
 | :--- | :--- |
@@ -98,13 +111,13 @@ Heredado de la skill original, es un **reference skill**: `SKILL.md` enruta a Cl
 
 Cada archivo incluye ejemplos de código Dart/Firestore reales (no solo teoría) y una tabla de checklist accionable.
 
-## 5. Seguridad y Operaciones en Producción
+## 6. Seguridad y Operaciones en Producción
 
 📄 [`skills/flutter/references/production-security-ops.md`](skills/flutter/references/production-security-ops.md)
 
 Cubre WAF/WAAP, RASP, IAM/PAM, MFA, SIEM/SOC y un **Incident Response Plan (IRP) mínimo viable**, con el equivalente realista de cada control enterprise para un proyecto de un solo desarrollador (ej. Firebase App Check como sustituto accesible de un WAF completo).
 
-## 6. Ciclo de Vida, DevOps y Automatización
+## 7. Ciclo de Vida, DevOps y Automatización
 
 📄 [`skills/flutter/references/secure-sdlc-devsecops.md`](skills/flutter/references/secure-sdlc-devsecops.md)
 
@@ -113,7 +126,7 @@ Cubre WAF/WAAP, RASP, IAM/PAM, MFA, SIEM/SOC y un **Incident Response Plan (IRP)
 * **SAST / DAST / SCA**: herramientas y reglas de lint concretas para Dart.
 * Gestión de `.gitignore`, firma de release y keystores en CI.
 
-## 7. Calidad de Software y Metodologías de Pruebas
+## 8. Calidad de Software y Metodologías de Pruebas
 
 📄 [`skills/flutter/references/testing-methodologies-tdd-bdd-qa.md`](skills/flutter/references/testing-methodologies-tdd-bdd-qa.md)
 
@@ -131,7 +144,7 @@ Cubre WAF/WAAP, RASP, IAM/PAM, MFA, SIEM/SOC y un **Incident Response Plan (IRP)
 
 Este propio repositorio incluye un [`SECURITY.md`](SECURITY.md) como ejemplo de política de divulgación de vulnerabilidades aplicada a sí mismo.
 
-## 8. Resiliencia Operativa y Continuidad
+## 9. Resiliencia Operativa y Continuidad
 
 📄 [`skills/flutter/references/resilience-bcp-drp.md`](skills/flutter/references/resilience-bcp-drp.md)
 
@@ -139,11 +152,33 @@ Este propio repositorio incluye un [`SECURITY.md`](SECURITY.md) como ejemplo de 
 * **BCP**: modo offline-first con persistencia de Firestore.
 * **DRP**: exportaciones automáticas de backups y recuperación de cuentas de infraestructura (Firebase/Play Console).
 
+## 10. Monetización: Publicidad y Suscripciones
+
+| Archivo | Contenido |
+|---|---|
+| [`skills/flutter/references/monetization-admob-ads.md`](skills/flutter/references/monetization-admob-ads.md) | Formatos de AdMob (banner/interstitial/rewarded/native), consentimiento UMP/GDPR, política de Play Store, placement UX |
+| [`skills/flutter/references/monetization-subscriptions-memberships.md`](skills/flutter/references/monetization-subscriptions-memberships.md) | Modelos freemium, `in_app_purchase` nativo vs. RevenueCat, seguridad del estado de suscripción (nunca confiar en el cliente), diseño de paywall, políticas de tienda |
+
+## 11. ASO, Marketing de Lanzamiento y Analítica
+
+📄 [`skills/flutter/references/aso-marketing-launch.md`](skills/flutter/references/aso-marketing-launch.md)
+
+* **ASO**: qué elementos de la ficha de Play Store realmente mueven la conversión.
+* **Checklist de lanzamiento**: de la ficha de tienda a la política de privacidad.
+* **Adquisición sin presupuesto**: comunidades de nicho, momento correcto para pedir reviews.
+* **Analítica mínima viable**: eventos esenciales sin sobre-instrumentar, sin filtrar PII.
+
+## 12. El Ciclo de Vida Completo (SDLC), App y Web
+
+📄 [`skills/flutter/references/sdlc-full-lifecycle.md`](skills/flutter/references/sdlc-full-lifecycle.md)
+
+Archivo **capstone** que amarra los 34 archivos restantes en las 7 fases clásicas del SDLC (Planificación → Análisis → Diseño → Implementación → Pruebas → Despliegue → Mantenimiento), señalando en cada fase qué archivo leer. Aplica tanto a una app móvil como a un proyecto web (Flutter Web u otro), con una tabla explícita de diferencias entre ambos canales (distribución, descubribilidad, actualización, monetización, permisos, accesibilidad).
+
 ---
 
 ## Cómo funciona (integración con Claude Code)
 
-`SKILL.md` describe cuándo la skill es relevante; Claude Code carga solo el/los archivo(s) de referencia necesarios para la tarea — mantiene el uso de contexto liviano incluso con 27 archivos de referencia disponibles.
+`SKILL.md` describe cuándo la skill es relevante; Claude Code carga solo el/los archivo(s) de referencia necesarios para la tarea — mantiene el uso de contexto liviano incluso con 35 archivos de referencia disponibles.
 
 ## Filosofía: opinionado pero transferible
 

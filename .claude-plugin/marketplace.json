@@ -1,6 +1,6 @@
 {
   "name": "flutter-secure-dev-playbook",
-  "description": "A comprehensive Flutter & Dart development AND application security skill for Claude Code — architecture, testing, and a full Secure SDLC/DevSecOps layer (OWASP MASVS/ASVS, STRIDE/PASTA, CWE, AAA/CIA).",
+  "description": "A comprehensive Flutter & Dart skill for Claude Code covering the full lifecycle: development, architecture, testing, Secure SDLC/DevSecOps (OWASP MASVS/ASVS, STRIDE/PASTA, CWE, AAA/CIA), UX/design and accessibility (WCAG 2.2), and monetization/marketing (AdMob, subscriptions, ASO).",
   "owner": {
     "name": "Sergio Rebolledo Lopez"
   },
@@ -8,8 +8,8 @@
     {
       "name": "flutter-secure-dev-playbook",
       "source": "./",
-      "description": "Comprehensive Flutter/Dart reference: widgets & layout, BLoC/Cubit, navigation (flow_builder/go_router), forms (formz), Material 3, REST/http, WebSockets, Firebase auth + FCM, maps (flutter_map), in-app purchase, animations, testing, performance, build/deploy — plus SOLID/Clean Architecture, OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE mapping, Secure SDLC/DevSecOps, AAA/CIA, production security ops, resilience (BCP/DRP), and TDD/BDD/QA methodology.",
-      "version": "1.2.0"
+      "description": "Comprehensive Flutter/Dart reference: widgets & layout, BLoC/Cubit, navigation, forms, Material 3, REST/http, WebSockets, Firebase, maps, in-app purchase, animations, testing, build/deploy — plus SOLID/Clean Architecture, OWASP MASVS/ASVS, STRIDE/PASTA, CWE, Secure SDLC/DevSecOps, AAA/CIA, resilience, TDD/BDD/QA, UX design principles, WCAG 2.2 accessibility, AdMob ads, subscriptions/memberships, and ASO/launch marketing.",
+      "version": "1.3.0"
     }
   ]
 }
