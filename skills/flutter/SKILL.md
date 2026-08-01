@@ -55,6 +55,8 @@ This is a **reference skill**: this file routes you to the right topic. **Load o
 | Production security ops | [references/production-security-ops.md](references/production-security-ops.md) | WAF/WAAP, RASP, SIEM/SOC equivalents, App Check, incident response plan |
 | Resilience & continuity | [references/resilience-bcp-drp.md](references/resilience-bcp-drp.md) | RTO/RPO, offline-first BCP, Firestore backups/DRP |
 | Testing methodology | [references/testing-methodologies-tdd-bdd-qa.md](references/testing-methodologies-tdd-bdd-qa.md) | TDD red/green/refactor, BDD/Gherkin, QA process, coverage KPIs |
+| License compliance | [references/license-compliance.md](references/license-compliance.md) | permissive vs. copyleft dependency licenses, audit process before a public release |
+| Code review checklist | [references/code-review-checklist.md](references/code-review-checklist.md) | Clean Architecture review, security severity triage, evidence-before-claims verification |
 
 ## "I want to…" → file
 
@@ -78,6 +80,8 @@ This is a **reference skill**: this file routes you to the right topic. **Load o
 | Set up CI security gates / secrets | secure-sdlc-devsecops.md |
 | Decide layering for a new feature | architecture-principles-solid-clean.md |
 | Plan backups / offline mode | resilience-bcp-drp.md |
+| Add a package to pubspec.yaml | license-compliance.md (+ secure-sdlc-devsecops.md for SCA) |
+| Self-review a PR before merging | code-review-checklist.md |
 
 ## Reference conventions (a proven production setup)
 

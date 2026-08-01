@@ -2,7 +2,7 @@
 
 Guía de referencia exhaustiva y práctica para el desarrollo de aplicaciones móviles con **Flutter** y **Dart**, empaquetada como **skill/plugin instalable para [Claude Code](https://claude.com/claude-code)**. Compila estándares de arquitectura, patrones de Flutter y marcos de ciberseguridad — desde el diseño hasta producción — en un solo repositorio.
 
-Este proyecto es un **fork extendido** de [Arcturus91/claude-flutter-skill](https://github.com/Arcturus91/claude-flutter-skill) (base de 19 archivos de referencia sobre Flutter/Dart), al que se agregó una capa completa de **Secure SDLC / DevSecOps / arquitectura**, con contenido original nuevo. Se mantiene la licencia MIT original y el aviso de copyright del autor base.
+Este proyecto es un **fork extendido** de [Arcturus91/claude-flutter-skill](https://github.com/Arcturus91/claude-flutter-skill) (base de 19 archivos de referencia sobre Flutter/Dart), al que se agregó una capa completa de **Secure SDLC / DevSecOps / arquitectura**, con contenido original nuevo — informado además por conceptos revisados en [VeryGoodOpenSource/vgv-ai-flutter-plugin](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin) (seguridad estática específica de paquetes, cumplimiento de licencias, gates de calidad) y [vp-k/flutter-craft](https://github.com/vp-k/flutter-craft) (checklist de revisión de arquitectura, principio de verificación antes de afirmar completado). El texto es original — no se copió contenido literal de ninguno de los tres, solo los temas/conceptos que cubren. Se mantiene la licencia MIT original y el aviso de copyright del autor base.
 
 ---
 
@@ -122,6 +122,15 @@ Cubre WAF/WAAP, RASP, IAM/PAM, MFA, SIEM/SOC y un **Incident Response Plan (IRP)
 * **QA**: checklist de PR y beta interna en Google Play Console.
 * **KPIs**: code coverage, crash-free rate, deuda técnica — con advertencia sobre coverage inflado.
 
+**Adicionales**:
+
+| Archivo | Contenido |
+|---|---|
+| [`skills/flutter/references/license-compliance.md`](skills/flutter/references/license-compliance.md) | Auditoría de licencias de dependencias (permisiva vs. copyleft) — obligación legal, no solo vulnerabilidad |
+| [`skills/flutter/references/code-review-checklist.md`](skills/flutter/references/code-review-checklist.md) | Checklist de revisión de arquitectura + triage de severidad de seguridad + principio de "evidencia antes que afirmación" |
+
+Este propio repositorio incluye un [`SECURITY.md`](SECURITY.md) como ejemplo de política de divulgación de vulnerabilidades aplicada a sí mismo.
+
 ## 8. Resiliencia Operativa y Continuidad
 
 📄 [`skills/flutter/references/resilience-bcp-drp.md`](skills/flutter/references/resilience-bcp-drp.md)
@@ -146,8 +155,10 @@ Issues y PRs bienvenidos. Mantén los ejemplos de código verificables contra ve
 
 ## Créditos
 
-- Base de referencia Flutter/Dart: [Arturo Barrantes Vásquez](https://github.com/Arcturus91) — [claude-flutter-skill](https://github.com/Arcturus91/claude-flutter-skill) (MIT).
-- Capa de arquitectura y seguridad (SOLID, OWASP MASVS/ASVS, STRIDE/PASTA, CWE, DevSecOps, AAA/CIA, resiliencia): [Sergio Rebolledo López](https://github.com/sergiorebolledo).
+- Base de referencia Flutter/Dart (fork): [Arturo Barrantes Vásquez](https://github.com/Arcturus91) — [claude-flutter-skill](https://github.com/Arcturus91/claude-flutter-skill) (MIT).
+- Temas de seguridad estática por paquete, cumplimiento de licencias y gates de calidad — conceptos revisados en [VeryGoodOpenSource/vgv-ai-flutter-plugin](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin) (Very Good Ventures), reescritos de forma original.
+- Checklist de revisión de arquitectura y principio de verificación antes de afirmar completado — conceptos revisados en [vp-k/flutter-craft](https://github.com/vp-k/flutter-craft), reescritos de forma original.
+- Capa de arquitectura y seguridad (SOLID, OWASP MASVS/ASVS, STRIDE/PASTA, CWE, DevSecOps, AAA/CIA, resiliencia, licencias, code review): [Sergio Rebolledo López](https://github.com/sergiorebolledo).
 
 ## Licencia
 

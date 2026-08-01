@@ -57,6 +57,24 @@ jobs:
       - run: dart pub deps --json > deps.json
 ```
 
+### Orden de los quality gates (por qué importa el orden)
+
+No corras todos los checks a la vez esperando que "todo pase": hazlo en este orden, porque cada gate hace que el siguiente sea significativo:
+
+1. **Analyze** (`flutter analyze`) — un analizador en rojo puede hacer que los tests ni siquiera compilen; arregla esto primero.
+2. **Format** (`dart format --set-exit-if-changed`) — corre después de analyze, para que el formateo no compita con los cambios que un fix de analyze introduce.
+3. **Test** (`flutter test`) — solo tiene sentido evaluarlo si analyze está limpio.
+4. **Coverage** — solo es significativo si los tests ya pasan; nunca calcules cobertura sobre una corrida con fallos de compilación.
+
+**Cobertura**: un objetivo de 100% es alcanzable (no una utopía) si excluyes del denominador el código generado, no el código real:
+
+```yaml
+# ejemplo de exclude para genhtml/lcov
+exclude_coverage: "**/*.{g,freezed,gen}.dart"   # código generado por build_runner
+```
+
+Perseguir 100% incluyendo archivos `.g.dart`/`.freezed.dart` generados automáticamente es una meta sin sentido — exclúyelos explícitamente y mide cobertura solo sobre el código que tú escribiste a mano.
+
 ### SAST (Static Application Security Testing)
 
 - `flutter analyze` con `analysis_options.yaml` estricto es tu primera línea de SAST — activa reglas como `avoid_print`, `close_sinks`, `unsafe_html`.
@@ -74,12 +92,46 @@ linter:
 
 ### SCA (Software Composition Analysis)
 
-Cada paquete en `pubspec.yaml` es una superficie de ataque potencial (supply chain). Prácticas mínimas:
+Cada paquete en `pubspec.yaml` es una superficie de ataque potencial (supply chain) — el código de un paquete se compila directamente dentro de tu binario, así que una dependencia vulnerable o maliciosa afecta a todos tus usuarios en todas las plataformas (esto es OWASP Mobile Top 10, categoría M2: Inadequate Supply Chain Security).
 
-- `dart pub outdated` regularmente para ver paquetes desactualizados.
-- Revisar el **pub.dev score** y "Popularity" antes de agregar un paquete nuevo — paquetes con 1 mantenedor y sin actividad reciente son mayor riesgo.
+**Detección de advisories conocidos**:
+
+```bash
+# dart pub get ya muestra advisories del GitHub Advisory Database al resolver:
+# http 0.13.0 (affected by advisory: GHSA-4rgh-jx4f-xxxx, 1.2.0 available)
+
+# osv-scanner escanea pubspec.lock contra la base de datos OSV (más CVEs que el Advisory Database)
+osv-scanner --lockfile=pubspec.lock
+```
+
+Si decides ignorar un advisory (falso positivo confirmado, código afectado no usado), documenta por qué — nunca lo silencies sin justificación:
+
+```yaml
+# pubspec.yaml
+ignored_advisories:
+  - GHSA-4rgh-jx4f-xxxx # No aplica: no usamos el constructor de http.Client afectado
+```
+
+**Caso real para tener en mente**: el paquete `flutter_downloader` (con alta popularidad en pub.dev) tuvo vulnerabilidades de inyección SQL y escritura arbitraria de archivos antes de la versión 1.11.2, que permitían robar tokens de sesión en apps bancarias y gubernamentales que lo usaban. Popularidad alta no es sinónimo de seguro — revisa el historial de advisories antes de confiar en un paquete solo por su adopción.
+
+**Señales de typosquatting** (paquetes maliciosos que imitan nombres populares) al agregar una dependencia nueva:
+- El nombre difiere de un paquete conocido por un carácter, un guion/guion bajo intercambiado, o letras transpuestas (ej. `flutter-secure-storage` en vez de `flutter_secure_storage`).
+- Sin "verified publisher" en pub.dev y pocos pub points, pero pidiendo permisos sensibles (red, cámara, Keychain/Keystore).
+- La URL del repositorio declarado no coincide con el homepage del paquete.
+
+**Permisos que se cuelan por dependencias transitivas**: revisa `AndroidManifest.xml` por permisos que tu código de primera mano no usa realmente — pueden venir fusionados silenciosamente por un paquete de terceros:
+
+```bash
+flutter pub deps --style=tree   # rastrea qué paquete introdujo un permiso inesperado
+```
+
+**Otras prácticas mínimas**:
+- `dart pub outdated` regularmente para ver parches de seguridad no anunciados como tales en el changelog.
+- Revisar el **pub.dev score** y "Popularity" antes de agregar un paquete nuevo — paquetes con 1 mantenedor y sin actividad reciente son mayor riesgo (independiente del check de typosquatting).
 - Fijar versiones (`^x.y.z` con cuidado) y revisar el changelog antes de actualizar mayor versión, no solo `flutter pub upgrade --major-versions` a ciegas.
-- Vigilar advisories: GitHub Dependabot funciona sobre `pubspec.yaml`/`pubspec.lock` si el repo está en GitHub — actívalo en **Settings → Security → Dependabot**.
+- GitHub Dependabot sobre `pubspec.yaml`/`pubspec.lock` — actívalo en **Settings → Security → Dependabot**.
+
+**Cumplimiento de licencias** (relacionado, pero distinto de vulnerabilidades): ver [license-compliance.md](license-compliance.md) — un paquete con licencia copyleft fuerte (GPL) puede obligarte legalmente a liberar tu propio código, incluso si el paquete no tiene ninguna vulnerabilidad.
 
 ### DAST (Dynamic Application Security Testing)
 

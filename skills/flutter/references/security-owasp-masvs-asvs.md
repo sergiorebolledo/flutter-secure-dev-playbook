@@ -59,6 +59,19 @@ final bytes = List<int>.generate(16, (_) => Random.secure().nextInt(256));
 final id = base64UrlEncode(bytes);
 ```
 
+**Hashing de contraseñas local (caso específico)**: si tu app necesita guardar localmente un hash de algo tipo-contraseña (ej. un PIN de acceso rápido a la app, no la contraseña de la cuenta), no uses `sha256` de `package:crypto` — es un hash *rápido*, diseñado para integridad de datos, no para contraseñas: eso lo hace vulnerable a fuerza bruta si el hash se filtra. Usa un algoritmo lento y salteado como SHA-512-crypt (`package:dart_crypt`) o Argon2/bcrypt vía un binding nativo.
+
+```dart
+// Mal: sha256 es rápido, no está diseñado para contraseñas
+import 'package:crypto/crypto.dart';
+final hash = sha256.convert(utf8.encode(pin)).toString();
+
+// Bien: algoritmo lento y salteado, diseñado para credenciales
+import 'package:dart_crypt/dart_crypt.dart';
+final hashed = Crypt.sha512(pin);   // al crear/cambiar el PIN
+final isValid = hashed.match(inputPin); // al verificar
+```
+
 ---
 
 ## MASVS-AUTH: autenticación y gestión de sesión
@@ -114,6 +127,7 @@ dio.httpClientAdapter = IOHttpClientAdapter(
 Relevante si la app maneja pagos, datos médicos o es blanco de fraude (ej. apps bancarias, apuestas). Para una primera app de calendario de turnos, normalmente **no** es prioritario, pero documentado para cuando escales:
 
 - Detección de root/jailbreak (`safe_device` o similar) como señal, no como bloqueo absoluto (falsos positivos existen).
+- `package:freerasp` detecta root/jailbreak, debugger adjunto y repaquetado de la app en tiempo de ejecución en un solo paquete — más completo que combinar varios detectores sueltos.
 - Play Integrity API (reemplazo de SafetyNet) para verificar que el APK no fue modificado y corre en un dispositivo certificado.
 
 ---

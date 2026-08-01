@@ -9,7 +9,7 @@
       "name": "flutter-secure-dev-playbook",
       "source": "./",
       "description": "Comprehensive Flutter/Dart reference: widgets & layout, BLoC/Cubit, navigation (flow_builder/go_router), forms (formz), Material 3, REST/http, WebSockets, Firebase auth + FCM, maps (flutter_map), in-app purchase, animations, testing, performance, build/deploy — plus SOLID/Clean Architecture, OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE mapping, Secure SDLC/DevSecOps, AAA/CIA, production security ops, resilience (BCP/DRP), and TDD/BDD/QA methodology.",
-      "version": "1.1.0"
+      "version": "1.2.0"
     }
   ]
 }

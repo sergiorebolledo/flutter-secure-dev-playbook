@@ -1,7 +1,7 @@
 {
   "name": "flutter-secure-dev-playbook",
-  "description": "Comprehensive, version-accurate Flutter & Dart development and security reference for Claude Code — widgets & layout, state management (BLoC/Cubit), navigation, forms (formz), Material 3 theming, REST/http, WebSockets, Firebase auth + FCM, maps & location, in-app purchases, animations, testing, performance, build/deploy, plus a full Secure SDLC / DevSecOps layer: OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE mapping, AAA/CIA, and production security ops. A SKILL.md router plus 27 on-demand reference files.",
-  "version": "1.1.0",
+  "description": "Comprehensive, version-accurate Flutter & Dart development and security reference for Claude Code — widgets & layout, state management (BLoC/Cubit), navigation, forms (formz), Material 3 theming, REST/http, WebSockets, Firebase auth + FCM, maps & location, in-app purchases, animations, testing, performance, build/deploy, plus a full Secure SDLC / DevSecOps layer: OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE mapping, AAA/CIA, and production security ops. A SKILL.md router plus 29 on-demand reference files, including dependency license compliance and a code-review checklist.",
+  "version": "1.2.0",
   "author": {
     "name": "Sergio Rebolledo Lopez",
     "url": "https://github.com/sergiorebolledo"
