@@ -271,6 +271,7 @@ A production app's WebSocket (`wss://your-api.example.com/<stage>`) carries pati
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as ws_status;
@@ -308,6 +309,10 @@ class ConsultationWebSocketService {
   Stream<WsStatus> get status => _status.stream;
 
   // ---- ref counting: first acquire connects, last release disconnects ----
+  // `jwt` is kept for call-site clarity (callers still pass a fresh token when
+  // entering a screen) but _connect() always re-fetches from FirebaseAuth
+  // before opening the socket, so a stale jwt here can never cause a stale
+  // connection — see _connect().
   Future<void> acquire(String jwt) async {
     _token = jwt;
     _refCount++;
@@ -324,7 +329,15 @@ class ConsultationWebSocketService {
   }
 
   Future<void> _connect() async {
-    if (_token == null) return;
+    if (_refCount == 0) return;
+    // Refresh the JWT on every connect attempt — not just at acquire().
+    // Scheduled reconnects (_scheduleReconnect) and app-resume (_onResume)
+    // both route through here; reusing the cached _token from acquire()
+    // means a socket backgrounded past the ~1h Firebase token TTL fails
+    // the $connect authorizer silently on resume/reconnect.
+    final freshToken = await FirebaseAuth.instance.currentUser?.getIdToken();
+    if (freshToken == null) return; // signed out mid-flight — nothing to connect with
+    _token = freshToken;
     _status.add(WsStatus.connecting);
 
     // Uri.replace keeps the path + adds ?token=JWT; scheme already wss.
@@ -450,6 +463,7 @@ Notes specific to the reference app:
 | Socket survives logout with stale JWT | `forceDisconnectAndReset()` zeroes ref count, clears token, suppresses reconnect. |
 | Forgetting `_manuallyClosed` flag | Intentional `close()` triggers `onDone` → reconnect storm. Guard reconnect with the flag. |
 | `dispose()` the channel but not the `AppLifecycleListener` | Call `_lifecycle.dispose()` too, or the `WidgetsBinding` observer leaks. |
+| Auto-reconnect/resume reusing the cached `_token` from `acquire()` | JWTs expire ~1h; a session backgrounded longer than that fails the `$connect` authorizer silently on resume. Re-fetch `FirebaseAuth.instance.currentUser?.getIdToken()` **inside `_connect()`**, not just at `acquire()` time. |
 | Using a hardcoded `Uri` scheme | Use `Uri.replace(scheme: https→wss / http→ws)` so dev/prev/prod origins flip TLS correctly. |
 | Throwing on an unknown `action` | Default-case ignore unknown actions for forward-compat with backend additions. |
 

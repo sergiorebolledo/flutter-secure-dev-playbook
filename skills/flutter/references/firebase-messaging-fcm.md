@@ -103,6 +103,11 @@ There are four distinct delivery paths depending on app state. Register all of t
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(); // background isolate has no app context
   // Keep light: no UI here. Optionally show a local notification.
+  // WHY light matters beyond style: this isolate only has what you re-init
+  // here. Other main-isolate singletons (flutter_dotenv, GetIt, a cached
+  // ApiService.baseUrl read from dotenv.env[...]) are NOT loaded — calling
+  // into them here throws (e.g. a null-check on an unloaded dotenv value).
+  // If you extend this handler to call your backend, re-load whatever it needs first.
 }
 
 Future<void> main() async {
@@ -243,6 +248,8 @@ The reference app is data-only end-to-end: the backend (`notifyUser()`) sends `{
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(); // background isolate is cold — must re-init
   // Intentionally light: routing happens on tap (onMessageOpenedApp / getInitialMessage).
+  // Other main-isolate singletons (flutter_dotenv, ApiService.baseUrl) are
+  // NOT loaded in this isolate — see the caveat on the first handler example above.
 }
 
 Future<void> main() async {
@@ -350,6 +357,7 @@ static Future<void> updateFcmToken(String token) async {
 |---|---|
 | Calling `getAPNSToken()` on Android | Wrap in `try/catch` — it throws `MissingPluginException`; only meaningful on iOS/macOS |
 | Background handler is a class method / closure | Must be **top-level** with `@pragma('vm:entry-point')`, and call `Firebase.initializeApp()` inside |
+| Calling `ApiService`/`dotenv`/other main-isolate singletons from the background handler | They aren't loaded in that isolate. Re-load what you need (e.g. `dotenv.load()`) before using it, or keep the handler to Firebase-only work |
 | Expecting a banner from data-only messages while backgrounded | Render it yourself via `flutter_local_notifications` in the background handler |
 | Using v16-19 positional `initialize(settings)` / `show(id, title, ...)` | v20+ requires **named** params: `initialize(settings: ...)`, `show(id:, title:, ...)` |
 | Channel created after the first push, or id mismatch | Create the `Importance.high` channel at startup; channel id in `AndroidNotificationDetails` must equal the created channel's id |

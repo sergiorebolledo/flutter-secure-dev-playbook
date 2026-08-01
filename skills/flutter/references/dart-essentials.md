@@ -420,7 +420,7 @@ For richer auth state carrying a `User`, prefer a `sealed class AuthState` with 
 ```dart
 Future<(List<Job> jobs, {String? after, String? before})> fetchJobs(
     {String? after}) async {
-  final res = await ApiService.get('/patient/jobs', query: {'after': ?after});
+  final res = await ApiService.get('/patient/jobs', body: {'after': ?after});
   final data = res['data'] as Map<String, dynamic>;
   final jobs = (data['items'] as List).map(Job.fromJson).toList();
   final pg = data['pagination'] as Map<String, dynamic>;

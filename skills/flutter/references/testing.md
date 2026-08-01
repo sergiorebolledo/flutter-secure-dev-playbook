@@ -152,13 +152,12 @@ void main() {
       seed: () => const LoginState(
         email: Email.dirty('a@b.cl'),
         password: Password.dirty('Secret123'),
-        isValid: true,
       ),
       act: (cubit) => cubit.submit(),
       expect: () => const [
-        LoginState(status: FormzSubmissionStatus.inProgress, isValid: true,
+        LoginState(status: FormzSubmissionStatus.inProgress,
             email: Email.dirty('a@b.cl'), password: Password.dirty('Secret123')),
-        LoginState(status: FormzSubmissionStatus.success, isValid: true,
+        LoginState(status: FormzSubmissionStatus.success,
             email: Email.dirty('a@b.cl'), password: Password.dirty('Secret123')),
       ],
       verify: (_) => verify(() => authService.signIn(
@@ -172,7 +171,7 @@ void main() {
             password: any(named: 'password'),
           )).thenThrow(FirebaseAuthException(code: 'wrong-password')),
       build: () => LoginCubit(authService),
-      seed: () => const LoginState(isValid: true),
+      seed: () => const LoginState(),
       act: (cubit) => cubit.submit(),
       expect: () => [
         isA<LoginState>().having((s) => s.status, 'status',
@@ -466,7 +465,7 @@ void main() {
         email: any(named: 'email'),
         password: any(named: 'password'))).thenAnswer((_) async {}),
     build: () => LoginCubit(signIn: signIn.call),
-    seed: () => const LoginState(isValid: true,
+    seed: () => const LoginState(
         email: Email.dirty('a@b.cl'), password: Password.dirty('Secret123')),
     act: (c) => c.submit(),
     expect: () => [
