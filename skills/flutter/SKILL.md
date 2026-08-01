@@ -1,13 +1,13 @@
 ---
-name: Flutter
-description: Use when developing, debugging, or reviewing Flutter / Dart mobile apps — widgets & layout, state management (BLoC/Cubit), navigation (flow_builder/go_router), forms (formz), Material 3 theming, REST/http, WebSockets, Firebase auth + FCM push, maps (flutter_map) & location, in-app purchases, animations, testing, performance, or build/deploy. Especially apps using BLoC/Cubit, formz, flow_builder, Firebase, and flutter_map.
+name: Flutter Secure Dev Playbook
+description: Use when developing, debugging, reviewing, or securing Flutter / Dart mobile apps — widgets & layout, state management (BLoC/Cubit), navigation (flow_builder/go_router), forms (formz), Material 3 theming, REST/http, WebSockets, Firebase auth + FCM push, maps (flutter_map) & location, in-app purchases, animations, testing, performance, or build/deploy. Also use for application security and Secure SDLC work — architecture principles (SOLID/Clean Architecture), OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE mapping, DevSecOps/CI pipelines, AAA/CIA access control, production security ops, and resilience planning. Especially apps using BLoC/Cubit, formz, flow_builder, Firebase, and flutter_map.
 ---
 
-# Flutter Development
+# Flutter Development & Application Security
 
 ## Overview
 
-Comprehensive, version-accurate reference for building Flutter apps with **Dart 3** and **Material 3**, weighted toward a **production mobile** stack (Cubit/BLoC, formz, flow_builder, a static `ApiService`, `web_socket_channel`, Firebase auth + FCM, `flutter_map`, `in_app_purchase`).
+Comprehensive, version-accurate reference for building **and securing** Flutter apps with **Dart 3** and **Material 3**, weighted toward a **production mobile** stack (Cubit/BLoC, formz, flow_builder, a static `ApiService`, `web_socket_channel`, Firebase auth + FCM, `flutter_map`, `in_app_purchase`), plus a full Secure Software Development Life Cycle (SSDLC) layer covering OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE weakness mapping, DevSecOps automation, AAA/CIA access control, and production resilience.
 
 This is a **reference skill**: this file routes you to the right topic. **Load only the `references/*.md` file(s) for your current task** — do not read them all. Each reference file ends with a `## Real-world usage` section showing the real pattern this codebase uses.
 
@@ -18,6 +18,9 @@ This is a **reference skill**: this file routes you to the right topic. **Load o
 - Wiring a package: BLoC, formz, flow_builder, http, web_socket_channel, firebase_auth/messaging, flutter_map, geolocator, image_picker, in_app_purchase, flutter_local_notifications.
 - Debugging rebuilds/jank, fixing an outdated package API, or setting up build/flavors/dotenv/splash/icons.
 - Reviewing Flutter code for correctness or convention drift.
+- Threat-modeling a new feature that touches sensitive data, auth, or payments.
+- Setting up CI/CD security gates (SAST/SCA), secrets management, or a release-signing pipeline.
+- Designing authentication, authorization/roles, or an incident-response/backup plan before shipping to production.
 
 **Not for:** the AWS/Lambda backend (see the backend repo's `CLAUDE.md`), or the Next.js admin frontend.
 
@@ -44,6 +47,14 @@ This is a **reference skill**: this file routes you to the right topic. **Load o
 | Performance & DevTools | [references/performance-and-devtools.md](references/performance-and-devtools.md) | `const`, scoping rebuilds, `ListView.builder`, `RepaintBoundary`, DevTools, profiling |
 | Tooling, build & deploy | [references/tooling-build-deploy.md](references/tooling-build-deploy.md) | Flutter CLI, build modes, flavors, `flutter_dotenv`, native splash/launcher icons, lints |
 | Architecture & conventions | [references/architecture-conventions.md](references/architecture-conventions.md) | feature-first layout, services/repositories, DI, event bus, the reference conventions distilled |
+| Architecture principles | [references/architecture-principles-solid-clean.md](references/architecture-principles-solid-clean.md) | SOLID, DRY/KISS/YAGNI, Clean Architecture layers, MVVM vs BLoC, DI, GRASP, DDD |
+| Mobile security (OWASP) | [references/security-owasp-masvs-asvs.md](references/security-owasp-masvs-asvs.md) | secure storage, crypto, auth/session, TLS/cert pinning, permissions, obfuscation, privacy — MASVS/MASTG/ASVS |
+| Threat modeling | [references/threat-modeling-stride-pasta-cwe.md](references/threat-modeling-stride-pasta-cwe.md) | STRIDE per-component analysis, PASTA risk-driven modeling, CWE mapping for Dart/Flutter bugs |
+| Secure SDLC / DevSecOps | [references/secure-sdlc-devsecops.md](references/secure-sdlc-devsecops.md) | shift-left security, CI SAST/SCA gates, secrets management, release signing pipeline |
+| Identity, access & CIA | [references/identity-access-aaa-cia.md](references/identity-access-aaa-cia.md) | CIA triad, AAA (auth/authz/accounting), Firestore rules, Custom Claims roles, MFA, IAM/PAM |
+| Production security ops | [references/production-security-ops.md](references/production-security-ops.md) | WAF/WAAP, RASP, SIEM/SOC equivalents, App Check, incident response plan |
+| Resilience & continuity | [references/resilience-bcp-drp.md](references/resilience-bcp-drp.md) | RTO/RPO, offline-first BCP, Firestore backups/DRP |
+| Testing methodology | [references/testing-methodologies-tdd-bdd-qa.md](references/testing-methodologies-tdd-bdd-qa.md) | TDD red/green/refactor, BDD/Gherkin, QA process, coverage KPIs |
 
 ## "I want to…" → file
 
@@ -60,7 +71,13 @@ This is a **reference skill**: this file routes you to the right topic. **Load o
 | Animate something | animations.md |
 | Fix jank / too many rebuilds | performance-and-devtools.md |
 | Add a flavor / env var / splash | tooling-build-deploy.md |
-| Write tests for a cubit/screen | testing.md |
+| Write tests for a cubit/screen | testing.md, testing-methodologies-tdd-bdd-qa.md |
+| Store a token/credential/PII | security-owasp-masvs-asvs.md |
+| Add a role (e.g. supervisor/admin) | identity-access-aaa-cia.md |
+| Threat-model a sensitive feature | threat-modeling-stride-pasta-cwe.md |
+| Set up CI security gates / secrets | secure-sdlc-devsecops.md |
+| Decide layering for a new feature | architecture-principles-solid-clean.md |
+| Plan backups / offline mode | resilience-bcp-drp.md |
 
 ## Reference conventions (a proven production setup)
 

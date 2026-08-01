@@ -1,15 +1,15 @@
 {
-  "name": "flutter-skill",
-  "description": "A comprehensive Flutter & Dart development skill for Claude Code.",
+  "name": "flutter-secure-dev-playbook",
+  "description": "A comprehensive Flutter & Dart development AND application security skill for Claude Code — architecture, testing, and a full Secure SDLC/DevSecOps layer (OWASP MASVS/ASVS, STRIDE/PASTA, CWE, AAA/CIA).",
   "owner": {
-    "name": "Arturo Barrantes Vasquez"
+    "name": "Sergio Rebolledo Lopez"
   },
   "plugins": [
     {
-      "name": "flutter",
+      "name": "flutter-secure-dev-playbook",
       "source": "./",
-      "description": "Comprehensive Flutter/Dart reference: widgets & layout, BLoC/Cubit, navigation (flow_builder/go_router), forms (formz), Material 3, REST/http, WebSockets, Firebase auth + FCM, maps (flutter_map), in-app purchase, animations, testing, performance, and build/deploy.",
-      "version": "1.0.0"
+      "description": "Comprehensive Flutter/Dart reference: widgets & layout, BLoC/Cubit, navigation (flow_builder/go_router), forms (formz), Material 3, REST/http, WebSockets, Firebase auth + FCM, maps (flutter_map), in-app purchase, animations, testing, performance, build/deploy — plus SOLID/Clean Architecture, OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE mapping, Secure SDLC/DevSecOps, AAA/CIA, production security ops, resilience (BCP/DRP), and TDD/BDD/QA methodology.",
+      "version": "1.1.0"
     }
   ]
 }

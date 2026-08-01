@@ -1,13 +1,13 @@
 {
-  "name": "flutter",
-  "description": "Comprehensive, version-accurate Flutter & Dart development reference for Claude Code — widgets & layout, state management (BLoC/Cubit), navigation, forms (formz), Material 3 theming, REST/http, WebSockets, Firebase auth + FCM, maps & location, in-app purchases, animations, testing, performance, and build/deploy. A SKILL.md router plus 19 on-demand reference files.",
-  "version": "1.0.0",
+  "name": "flutter-secure-dev-playbook",
+  "description": "Comprehensive, version-accurate Flutter & Dart development and security reference for Claude Code — widgets & layout, state management (BLoC/Cubit), navigation, forms (formz), Material 3 theming, REST/http, WebSockets, Firebase auth + FCM, maps & location, in-app purchases, animations, testing, performance, build/deploy, plus a full Secure SDLC / DevSecOps layer: OWASP MASVS/ASVS, STRIDE/PASTA threat modeling, CWE mapping, AAA/CIA, and production security ops. A SKILL.md router plus 27 on-demand reference files.",
+  "version": "1.1.0",
   "author": {
-    "name": "Arturo Barrantes Vasquez",
-    "url": "https://github.com/Arcturus91"
+    "name": "Sergio Rebolledo Lopez",
+    "url": "https://github.com/sergiorebolledo"
   },
-  "homepage": "https://github.com/Arcturus91/claude-flutter-skill",
-  "repository": "https://github.com/Arcturus91/claude-flutter-skill",
+  "homepage": "https://github.com/sergiorebolledo/flutter-secure-dev-playbook",
+  "repository": "https://github.com/sergiorebolledo/flutter-secure-dev-playbook",
   "license": "MIT",
   "keywords": [
     "flutter",
@@ -25,6 +25,15 @@
     "web-socket-channel",
     "mobile",
     "claude-code",
-    "skill"
+    "skill",
+    "owasp",
+    "masvs",
+    "asvs",
+    "stride",
+    "pasta",
+    "cwe",
+    "devsecops",
+    "ssdlc",
+    "security"
   ]
 }
